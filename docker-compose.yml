@@ -1,0 +1,19 @@
+version: '3.2'
+
+services:
+  icy_server:
+    build:
+      dockerfile: './icecast2.Dockerfile'
+      context: '.'
+    image: icy_server:latest
+    volumes:
+      - ./logs:/var/log/icecast2
+      # - /etc/localtime:/etc/localtime:ro
+      - ./icecast2:/etc/icecast2
+    environment:
+      - ICECAST_SOURCE_PASSWORD=hackme
+      - ICECAST_ADMIN_PASSWORD=hackme
+      - ICECAST_PASSWORD=hackme
+      - ICECAST_RELAY_PASSWORD=hackme
+    ports:
+      - 8000:8000
